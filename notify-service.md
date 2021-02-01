@@ -35,42 +35,6 @@ message Response {
  -
 ***
 
-### user_subscribe_topic
-
-Register subscribe to a topic for client (web & mobile)
-
-##### Parameters
-
-`stringified object`:
-
-    registrationToken: string
-    topicName: string
-
-##### Returns
-
-`string`
-
-##### Example
-
-```js
-// Request
-{
-    method: "user_subscribe_topic",
-    params: JSON.stringify({
-        registrationToken: "regis-token-get-from-fcm-client"
-        topicName: "/topics/name-of-the-topic"
-    })
-}
-
-// Result
-{
-  result: "subscribe success"
-}
-
-```
-
-***
-
 ### user_notify
 
 Send notify to a mobile user (hard & cloud wallet).
@@ -225,6 +189,78 @@ Sending email to recover password
 
 ***
 
+### user_subscribe_topic
+
+Register subscribe to a topic for client (web & mobile)
+
+##### Parameters
+
+`stringified object`:
+
+    registrationToken: string
+    topicName: string
+
+##### Returns
+
+`string`
+
+##### Example
+
+```js
+// Request
+{
+    method: "user_subscribe_topic",
+    params: JSON.stringify({
+        registrationToken: "regis-token-get-from-fcm-client"
+        topicName: "/topics/name-of-the-topic"
+    })
+}
+
+// Result
+{
+  result: "subscribe success"
+}
+
+```
+
+***
+
+### user_unsubscribe_topic
+
+Unsubscribe to a topic for client (web & mobile)
+
+##### Parameters
+
+`stringified object`:
+
+    registrationToken: string
+    topicName: string
+
+##### Returns
+
+`string`
+
+##### Example
+
+```js
+// Request
+{
+    method: "user_unsubscribe_topic",
+    params: JSON.stringify({
+        registrationToken: "regis-token-get-from-fcm-client"
+        topicName: "/topics/name-of-the-topic"
+    })
+}
+
+// Result
+{
+  result: "unsubscribe success"
+}
+
+```
+
+***
+
 ### server_email_admin
 
 Sending email for admin 
@@ -261,6 +297,66 @@ Sending email for admin
 // Result
 {
   result: "success"
+}
+
+```
+
+***
+
+### server_publish_topic
+
+Send all notification for user who subscribe to the topic
+
+
+##### Parameters
+
+`stringified object`:
+
+    "topicName": "/topics/fucking-topic",
+    "topicPayload": {
+        "data": {
+                "dataThichVietGiThiViet": "nhu the nay",
+                "khongCoKeyMessage_type": "la duoc",
+                "khongCoKeyFrom" : "la duoc"
+        },
+        "notification": {
+                "title": "this is stupid tilte",
+                "body": "stupid body"
+            }
+        },
+        "options"?: {
+
+        }
+
+##### Returns
+
+`string`
+  
+##### Example
+
+```js
+// Request
+{
+    method: "server_email_admin",
+    params: JSON.stringify({
+        "topicName": "/topics/fucking-topic",
+        "topicPayload": {
+            "data": {
+                "dataThichVietGiThiViet": "nhu the nay",
+                "khongCoKeyMessage_type": "la duoc",
+                "khongCoKeyFrom" : "la duoc"
+            },
+            "notification": {
+                "title": "this is stupid tilte",
+                "body": "stupid body"
+            }
+        }
+    })
+}
+
+// Result
+{
+  result: "send topic success"
 }
 
 ```
